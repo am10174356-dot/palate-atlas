@@ -1,15 +1,15 @@
 // Service Worker — アプリシェルのオフラインキャッシュ
-const CACHE = 'palate-atlas-v1';
+const CACHE = 'palate-atlas-v2';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './css/style.css',
-  './js/app.js', './js/db.js', './js/ui.js', './js/wheel.js', './js/ai.js', './js/export.js',
+  './js/app.js', './js/db.js', './js/ui.js', './js/wheel.js', './js/ai.js', './js/export.js', './js/sync.js',
   './js/views/home.js', './js/views/list.js', './js/views/editor.js',
-  './js/views/detail.js', './js/views/settings.js', './js/views/search.js',
+  './js/views/detail.js', './js/views/settings.js', './js/views/search.js', './js/views/login.js',
   './data/categories.js', './data/wine.js', './data/whisky.js', './data/coffee.js',
-  './data/brandy.js', './data/sake.js', './data/cascalate.js',
+  './data/brandy.js', './data/sake.js', './data/cascalate.js', './data/sync-config.js',
   './icons/icon.svg', './icons/icon-180.png', './icons/icon-512.png',
 ];
 
