@@ -1,0 +1,16 @@
+{
+  "name": "Palate Atlas — テイスティングノート",
+  "short_name": "Palate Atlas",
+  "description": "ワイン・ウイスキー・コーヒー・ブランデー・日本酒・カスカレートのテイスティングノート",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#15110e",
+  "theme_color": "#1a1714",
+  "lang": "ja",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

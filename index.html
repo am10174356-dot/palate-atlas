@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Palate Atlas — テイスティングノート</title>
+<meta name="description" content="ワイン・ウイスキー・コーヒー・ブランデー・日本酒・カスカレートのテイスティングノート">
+<meta name="theme-color" content="#14100c">
+<script>
+  // テーマをCSS読み込み前に適用してフラッシュを防ぐ
+  document.documentElement.dataset.theme = localStorage.getItem('pa-theme') || 'night';
+</script>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Palate Atlas">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="app-header">
+    <button id="back-btn" class="icon-btn" hidden aria-label="戻る">←</button>
+    <h1 id="header-title">Palate Atlas</h1>
+    <button id="theme-btn" class="icon-btn" aria-label="表示モード切替">☾</button>
+    <a href="#/settings" class="icon-btn" id="settings-link" aria-label="設定">⚙</a>
+  </header>
+
+  <main id="app"></main>
+
+  <nav id="bottom-nav">
+    <a href="#/" data-nav="home"><span class="nav-icon">◉</span><span>ホーム</span></a>
+    <a href="#/search" data-nav="search"><span class="nav-icon">🔍</span><span>検索</span></a>
+    <a href="#/settings" data-nav="settings"><span class="nav-icon">⚙</span><span>設定</span></a>
+  </nav>
+
+  <div id="toast" hidden></div>
+  <div id="print-area" aria-hidden="true"></div>
+
+  <script type="module" src="js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+    }
+  </script>
+</body>
+</html>

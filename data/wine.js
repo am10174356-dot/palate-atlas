@@ -1,0 +1,52 @@
+export default {
+  id: 'wine',
+  name: 'ワイン',
+  en: 'Wine',
+  icon: '🍷',
+  color: '#b54d63',
+  agent: {
+    name: 'Terroirist',
+    title: 'ワイン鑑定エージェント',
+    persona: `あなたは「Terroirist(テロワリスト)」。WSET Level 4 / マスター・オブ・ワイン相当の体系的知識を持つワイン鑑定エージェントです。
+産地(テロワール)・品種・ヴィンテージ・醸造法がワインの香味に与える影響を科学的かつ体系的に説明できます。
+評価の際は、WSETのSAT(Systematic Approach to Tasting)を基準に、外観・香り・味わい・品質の観点から論じます。
+特定の生産者やスタイルへの好みを表に出さず、国際的なテイスティング基準との比較で語ります。`,
+  },
+  fields: [
+    { key: 'producer', label: '生産者', type: 'text', placeholder: '例: シャトー・マルゴー' },
+    { key: 'vintage', label: 'ヴィンテージ', type: 'number', placeholder: '例: 2019' },
+    { key: 'country', label: '産地(国)', type: 'text', placeholder: '例: フランス' },
+    { key: 'region', label: '産地(地域)', type: 'text', placeholder: '例: ボルドー / マルゴー' },
+    { key: 'type', label: 'タイプ', type: 'select', options: ['赤', '白', 'ロゼ', 'スパークリング', 'オレンジ', '酒精強化', '甘口・貴腐'] },
+    { key: 'grapes', label: '品種', type: 'text', placeholder: '例: カベルネ・ソーヴィニヨン主体', wide: true },
+    { key: 'abv', label: 'アルコール度数(%)', type: 'number', step: '0.1' },
+    { key: 'price', label: '価格(円)', type: 'number' },
+    { key: 'method', label: '製法・熟成', type: 'textarea', placeholder: '例: 新樽率60%で18ヶ月熟成、マロラクティック発酵あり', wide: true },
+    { key: 'appearance', label: '外観(色調・濃淡)', type: 'text', placeholder: '例: 濃いガーネット、エッジに紫', wide: true },
+  ],
+  sliders: [
+    { key: 'sweetness', label: '甘味' },
+    { key: 'acidity', label: '酸味' },
+    { key: 'tannin', label: 'タンニン' },
+    { key: 'body', label: 'ボディ' },
+    { key: 'alcohol', label: 'アルコール感' },
+    { key: 'finish', label: '余韻' },
+  ],
+  wheel: [
+    { name: '柑橘', color: '#e8c44a', children: ['レモン', 'ライム', 'グレープフルーツ', 'オレンジ', '柚子'] },
+    { name: '樹果実', color: '#b8cf52', children: ['青リンゴ', 'リンゴ', '洋ナシ', 'マルメロ'] },
+    { name: '核果', color: '#f0a35e', children: ['桃', 'アプリコット', 'ネクタリン'] },
+    { name: 'トロピカル', color: '#f08a3c', children: ['パイナップル', 'マンゴー', 'パッションフルーツ', 'ライチ', 'メロン', 'バナナ'] },
+    { name: '赤い果実', color: '#d8475a', children: ['イチゴ', 'ラズベリー', 'レッドチェリー', 'クランベリー', 'ザクロ'] },
+    { name: '黒い果実', color: '#7c3553', children: ['カシス', 'ブラックベリー', 'ブルーベリー', 'ダークチェリー', 'プラム'] },
+    { name: 'ドライフルーツ', color: '#9c5b38', children: ['レーズン', 'イチジク', 'プルーン', '干し杏'] },
+    { name: '花', color: '#d989b8', children: ['スミレ', 'バラ', 'アカシア', 'オレンジの花', 'エルダーフラワー', '金木犀'] },
+    { name: 'ハーブ・植物', color: '#5d9c59', children: ['青草', 'ピーマン', 'アスパラガス', 'ミント', 'タイム', 'トマトの葉', 'ユーカリ'] },
+    { name: 'スパイス', color: '#b06a2e', children: ['黒胡椒', '白胡椒', '甘草', 'シナモン', 'クローブ', 'ナツメグ'] },
+    { name: '樽・焙煎', color: '#7a4a26', children: ['バニラ', 'トースト', 'スモーク', 'コーヒー', 'チョコレート', 'ココナッツ', '杉'] },
+    { name: 'ナッツ', color: '#a8804f', children: ['アーモンド', 'ヘーゼルナッツ', 'クルミ'] },
+    { name: '土・ミネラル', color: '#7d8a93', children: ['火打石', '濡れた石', '土', 'キノコ', '森の下草'] },
+    { name: '熟成・動物', color: '#6b5544', children: ['革', 'タバコ', '腐葉土', 'ジビエ', 'ハチミツ', 'ペトロール'] },
+    { name: 'イースト・乳', color: '#cfc08e', children: ['パン', 'ブリオッシュ', 'バター', 'ヨーグルト', 'クリーム'] },
+  ],
+};
