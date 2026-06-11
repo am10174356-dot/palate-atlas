@@ -6,9 +6,18 @@ import * as detail from './views/detail.js';
 import * as settings from './views/settings.js';
 import * as search from './views/search.js';
 import { initTheme } from './ui.js';
+import { syncAvailable, initSync, currentAccount } from './sync.js';
+import { renderLogin, renderUnlock, lockActive, localOnlyMode } from './views/login.js';
 
 const app = document.getElementById('app');
 initTheme();
+
+let authReady = false;
+async function ensureAuth() {
+  if (authReady) return;
+  try { await initSync(); } catch (e) { console.warn('同期初期化に失敗', e); }
+  authReady = true;
+}
 
 const routes = [
   { re: /^#?\/?$/, view: () => home.render(app) },
@@ -21,6 +30,19 @@ const routes = [
 ];
 
 async function render() {
+  await ensureAuth();
+  // 起動時PINロック
+  if (lockActive()) {
+    document.getElementById('back-btn').hidden = true;
+    renderUnlock(app, render);
+    return;
+  }
+  // アカウント機能が有効で未ログインの場合はログイン画面
+  if (syncAvailable() && !currentAccount() && !localOnlyMode()) {
+    document.getElementById('back-btn').hidden = true;
+    renderLogin(app, render);
+    return;
+  }
   const hash = location.hash || '#/';
   for (const r of routes) {
     const m = hash.match(r.re);

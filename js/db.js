@@ -38,6 +38,10 @@ export function uid() {
   return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
 }
 
+// 同期モジュールがローカル変更を検知するためのイベントバス
+// 'note-put' (detail: note) / 'note-delete' (detail: id)
+export const dbEvents = new EventTarget();
+
 export async function getAllNotes() {
   const db = await openDB();
   return new Promise((resolve, reject) => {
@@ -65,12 +69,15 @@ export async function getNote(id) {
   });
 }
 
-export function putNote(note) {
-  return tx('notes', 'readwrite', store => store.put(note));
+// silent: true は同期処理からの書き込み(イベントを発火させない)
+export async function putNote(note, { silent = false } = {}) {
+  await tx('notes', 'readwrite', store => store.put(note));
+  if (!silent) dbEvents.dispatchEvent(new CustomEvent('note-put', { detail: note }));
 }
 
-export function deleteNote(id) {
-  return tx('notes', 'readwrite', store => store.delete(id));
+export async function deleteNote(id, { silent = false } = {}) {
+  await tx('notes', 'readwrite', store => store.delete(id));
+  if (!silent) dbEvents.dispatchEvent(new CustomEvent('note-delete', { detail: id }));
 }
 
 export async function getSetting(key, fallback = null) {
